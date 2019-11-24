@@ -9,3 +9,12 @@ variable "region"{
     type = "string"
     default = "eu-west-2"
 }
+
+variable "nat_amis"{
+    type="map"
+    default ={
+        eu-west-2 ="ami-05f37c3995fffb4fd"
+      
+
+    }
+}
