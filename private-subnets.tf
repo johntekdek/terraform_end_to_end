@@ -15,6 +15,7 @@ resource "aws_instance" "nat"{
     instance_type = "t2.micro"
     subnet_id = "${aws_subnet.public.*.id[0]}"
     source_dest_check = false
+    vpc_security_group_ids = ["${aws_security_group.nat_sg.id}"]
  
  
     tags ={
@@ -29,7 +30,7 @@ resource "aws_route_table" "privatert" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_instance.nat.id}"
+    gateway_id = "${aws_internet_gateway.igw.id}"
   }
 
     tags = {
@@ -42,4 +43,20 @@ resource "aws_route_table_association" "private_rt_association" {
  
   subnet_id      = "${aws_subnet.private.*.id[count.index]}"
   route_table_id = "${aws_route_table.privatert.id}"
+}
+
+
+resource "aws_security_group" "nat_sg" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = "${aws_vpc.my_app.id}"
+
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+
+  }
 }
