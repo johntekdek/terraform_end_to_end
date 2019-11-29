@@ -16,5 +16,6 @@ resource "aws_instance" "web" {
     tags = "${local.web_tags}"
 
     user_data = "${file("scripts/apache.sh")}"
+    iam_instance_profile = "${aws_iam_instance_profile.s3_ec2_profile.name}"
   
 }
