@@ -1,0 +1,15 @@
+{
+    "version":"2019-11-28",
+    "Statement":[
+{
+
+    "effect":"allow",
+    "principal":{
+        "Service":"ec2.amazonaws.com"
+    },
+    "Action":"sts:AssumeRole"
+}
+
+
+    ]
+}

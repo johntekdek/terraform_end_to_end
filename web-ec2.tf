@@ -13,6 +13,8 @@ resource "aws_instance" "web" {
     instance_type = "${var.web_instance_type}"
     subnet_id = "${local.pub_sub_ids[count.index]}"
     
-    tags = "${var.web_tags}"
+    tags = "${local.web_tags}"
+
+    user_data = "${file("scripts/apache.sh")}"
   
 }

@@ -37,11 +37,16 @@ variable "web_tags" {
     type = "map"
     default ={
     Name = "Webserver"}
+    
 }
 
 variable "web_ec2_count" {
+
     description = "choose number ec2 instances for web"
-    type= "string"
-    default="1"
-  
+    type = "string"
+    default ="1"  
+}
+
+variable "my_app_s3_bucket" {
+    default = "javahome-app-dev"
 }
