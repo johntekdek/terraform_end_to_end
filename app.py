@@ -1,3 +1,5 @@
+import sys
+"""
 def bisection_iter(n,arr):
     start = 0
     stop = len(arr)-1    
@@ -23,7 +25,9 @@ def create_list(max_val):
 
 l = create_list(10)
 for num in range(16):
-    print(bisection_iter(num,l))
+    print(bisection_iter(num,l)) 
+
+"""
 
 
 
@@ -60,6 +64,25 @@ class Student:
 def main():
     library=Library(["The last battle","the best game","who is jeez"])
     student=Student()
+    done=False
+    while done == False:
+        print(""" ==== LIBRARAY MENU ==== 
+        1. Display all available books
+        2. Request a book 
+        3. Return a book
+        4. Exit
+        """)
+        choice = int(input("Enter Choice"))
+        if choice==1:
+            library.displayAvailablebooks()
+        elif choice == 2:
+            library.lendBook(student.requestBook())
+        elif choice == 3:
+            library.addBook(student.returnBook())
+        elif choice == 4 :
+            sys.exit()
+
+main()
 
 
 
@@ -67,3 +90,13 @@ def main():
 
 
 
+def largestRnage(Array):
+    numbers = {x:0 for x in array}:
+        if numbers[number] == 0:
+            left_count = number - 1
+            right_count = number + 1 
+
+            while left_count in numbers:  # 0(1)
+                numbers[left_count]=1
+                left_count -=1 
+            left_count + 1
